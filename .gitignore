@@ -1,0 +1,15 @@
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### BUILDS
+vanilla-java-impl/target
+spring-java-impl/target
+
+### TOOLS
+dart-impl/.dart_tool
+spring-java-impl/mvnw
+spring-java-impl/mvnw.cmd
+spring-java-impl/.mvn

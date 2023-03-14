@@ -1,0 +1,77 @@
+# AWS Lambda implementations
+
+The different implementations are running in Docker and are tested with an http request (test.http)
+
+[,curl]
+----
+include::./http/test.http/[]
+----
+
+The different result:
+
+## Javascript
+
+COLD:
+
+----
+START RequestId: 15ff998d-e0b4-4814-95f8-a1a05692deab Version: $LATEST
+}
+2023-03-14T15:42:30.164066007Z END RequestId: 15ff998d-e0b4-4814-95f8-a1a05692deab
+2023-03-14T15:42:30.164242411Z REPORT RequestId: 15ff998d-e0b4-4814-95f8-a1a05692deab	Init Duration: 3.94 ms	Duration: 152.61 ms	Billed Duration: 153 ms	Memory Size: 3008 MB	Max Memory Used: 3008 MB
+2023-03-14T15:42:31.856727801Z
+----
+
+HOT:
+
+----
+START RequestId: 98f5b396-5f4b-44fd-95cc-c81572a20ca3 Version: $LATEST
+}
+2023-03-14T15:42:31.859236879Z END RequestId: 98f5b396-5f4b-44fd-95cc-c81572a20ca3
+2023-03-14T15:42:31.859342722Z REPORT RequestId: 98f5b396-5f4b-44fd-95cc-c81572a20ca3	Duration: 2.46 ms	Billed Duration: 3 ms	Memory Size: 3008 MB	Max Memory Used: 3008 MB
+----
+
+## Vanilla Java
+
+COLD:
+
+----
+START RequestId: e02c1b22-7a2e-46bb-94ce-8fc9e12a1e8b Version: $LATEST
+2023-03-14T15:44:17.485813008Z END RequestId: e02c1b22-7a2e-46bb-94ce-8fc9e12a1e8b
+2023-03-14T15:44:17.485854535Z REPORT RequestId: e02c1b22-7a2e-46bb-94ce-8fc9e12a1e8b	Init Duration: 0.56 ms	Duration: 349.32 ms	Billed Duration: 350 ms	Memory Size: 3008 MB	Max Memory Used: 3008 MB
+2023-03-14T15:44:18.665218511Z
+----
+
+HOT:
+
+----
+START RequestId: 98793018-0b5e-4d82-bab4-0557dc622386 Version: $LATEST
+2023-03-14T15:44:18.667679656Z END RequestId: 98793018-0b5e-4d82-bab4-0557dc622386
+2023-03-14T15:44:18.667768299Z REPORT RequestId: 98793018-0b5e-4d82-bab4-0557dc622386	Duration: 2.44 ms	Billed Duration: 3 ms	Memory Size: 3008 MB	Max Memory Used: 3008 MB
+----
+
+
+## Spring Java
+
+COLD:
+
+----
+15:59:59.933 [main] INFO org.springframework.cloud.function.utils.FunctionClassUtils - Searching for start class in manifest: jar:file:/var/runtime/lib/aws-lambda-java-core-1.2.2.jar!/META-INF/MANIFEST.MF
+
+...
+
+END RequestId: 6f40837e-9872-4338-8ebb-6aa663a0ee52
+2023-03-14T16:00:00.788091033Z REPORT RequestId: 6f40837e-9872-4338-8ebb-6aa663a0ee52	Init Duration: 0.13 ms	Duration: 1028.16 ms	Billed Duration: 1029 ms	Memory Size: 3008 MB	Max Memory Used: 3008 MB
+----
+
+HOT:
+
+----
+START RequestId: cf59b5c8-c7f4-4fda-8f89-bbf1e722c782 Version: $LATEST
+2023-03-14T16:00:01.711279433Z 2023-03-14T16:00:01.710Z  INFO 14 --- [           main] o.s.c.f.adapter.aws.AWSLambdaUtils       : Received: {"name":"hello world!"}
+2023-03-14T16:00:01.714353898Z END RequestId: cf59b5c8-c7f4-4fda-8f89-bbf1e722c782
+2023-03-14T16:00:01.714594420Z REPORT RequestId: cf59b5c8-c7f4-4fda-8f89-bbf1e722c782	Duration: 4.01 ms	Billed Duration: 5 ms	Memory Size: 3008 MB	Max Memory Used: 3008 MB
+----
+
+## Dart
+
+TODO

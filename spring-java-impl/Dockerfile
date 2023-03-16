@@ -10,7 +10,7 @@ RUN mvn package
 #################
 ## RUN
 #################
-FROM public.ecr.aws/lambda/java:17-preview
+FROM public.ecr.aws/lambda/java:17
 # https://gallery.ecr.aws/lambda/java
 
 EXPOSE 8080

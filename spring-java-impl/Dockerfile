@@ -14,6 +14,7 @@ FROM public.ecr.aws/lambda/java:17
 # https://gallery.ecr.aws/lambda/java
 
 EXPOSE 8080
+# ENV AWS_LAMBDA_FUNCTION_MEMORY_SIZE="256"
 
 COPY --from=build app/target/spring-java-impl-0.0.1-SNAPSHOT-aws.jar ${LAMBDA_TASK_ROOT}/lib/
 

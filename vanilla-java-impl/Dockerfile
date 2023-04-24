@@ -14,6 +14,7 @@ FROM public.ecr.aws/lambda/java:17
 # https://gallery.ecr.aws/lambda/java
 
 EXPOSE 8080
+# ENV AWS_LAMBDA_FUNCTION_MEMORY_SIZE="256"
 
 COPY --from=build app/target/classes ${LAMBDA_TASK_ROOT}
 COPY --from=build app/target/dependency/* ${LAMBDA_TASK_ROOT}/lib/

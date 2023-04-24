@@ -1,3 +1,6 @@
+#################
+## BUILD
+#################
 FROM rust:1.68-buster as builder
 
 WORKDIR /build
@@ -12,9 +15,15 @@ RUN rustup target add x86_64-unknown-linux-musl && cargo build --release --targe
 RUN ls /build/target/x86_64-unknown-linux-musl/release/
 RUN chmod -R o+rX /build/target/x86_64-unknown-linux-musl/release/.
 
-# copy artifacts to a clean image
+#################
+## RUN
+#################
 FROM public.ecr.aws/lambda/provided:al2
+#https://gallery.ecr.aws/lambda/provided
+
 EXPOSE 8080
+# ENV AWS_LAMBDA_FUNCTION_MEMORY_SIZE="256"
+
 COPY --from=builder /build/target/x86_64-unknown-linux-musl/release/rust-impl ${LAMBDA_RUNTIME_DIR}/bootstrap
 
 CMD ["lambda-handler"]

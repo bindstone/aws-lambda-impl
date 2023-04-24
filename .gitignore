@@ -7,6 +7,8 @@
 ### BUILDS
 vanilla-java-impl/target
 spring-java-impl/target
+quarkus-java-impl/target
+rust-impl/target
 
 ### TOOLS
 dart-impl/.dart_tool

@@ -17,7 +17,6 @@ FROM public.ecr.aws/lambda/provided:al2
 
 EXPOSE 8080
 WORKDIR ${LAMBDA_TASK_ROOT}
-# ENV AWS_LAMBDA_RUNTIME_API="http://127.0.0.1:8081"
 COPY --from=build /app/bin/main.sh .
 ENTRYPOINT [ "./main.sh" ]
 # RUN [ "./main.sh" ]
